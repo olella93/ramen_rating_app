@@ -13,7 +13,6 @@ const ramens = [
             <img src="img/${ramen.image}" alt="${ramen.name}">
             <h2>${ramen.name}</h2>
             <h3>${ramen.restaurant}</h3>
-            <h4>Rating: ${ramen.rating}/5</
         `;
         ramenMenu.appendChild(ramenDiv);
     })
