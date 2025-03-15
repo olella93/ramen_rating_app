@@ -30,21 +30,24 @@ const ramens = [
 
     // add new ramen
     document.getElementById("ramen-form").addEventListener("submit", (e) => {e.preventDefault();
+        
         const newRamen ={
             id: ramens.length +1,
-            name: document.getElementById("new-name").value,
-            restaurant: document.getElementById("new-restaurant").value,
-            image: document.getElementById("new-image").value,
-            rating: parseInt(document.getElementById("new-rating").value),
-            comment: document.getElementById("new-comment").value
+            name: document.getElementById("name").value,
+            restaurant: document.getElementById("restaurant").value,
+            image: document.getElementById("image").value,
+            rating: parseInt(document.getElementById("rating").value),
+            comment: document.getElementById("comment").value
         };
         ramens.push(newRamen);
         displayRamenMenu();
         displayRamenDetails(newRamen);
-        e.target.removeEventListener();
     });
 
+    // Ramen Detail Display
+
     function handleClick(event){
+        
         // to get the clicked image
         const clickedRamen = event.target;
 
@@ -64,7 +67,64 @@ const ramens = [
         ramenDetails.querySelector("#rating-display").textContent = `Comment: ${comment}`;
 
 }
+//Handle New Ramen Form Submission
 
+function addSubmitListener(){
+    const form = document.getElementById("ramen-form");
 
-    displayRamenMenu();
+    form.addEventListener("submit", function (event){
+        event.preventDefault(); 
+
+        const name = form.name.value;
+        const restaurant = form.restaurant.value;
+        const rating = form.rating.value;
+        const comment = form.comment.value;
+        const imageUrl = form.image.value;
+
+        // creating new ramen image
+        const newRamenImg = document.createElement("img");
+        newRamenImg.src = imageUrl;
+        newRamenImg.setAttribute("data-name", name);
+        newRamenImg.setAttribute("data-restaurant", restaurant);
+        newRamenImg.setAttribute("data-rating", rating);
+        newRamenImg.setAttribute("data-comment", comment);
+
+        // append to #ramen-menu
+
+    const ramenMenu = document.getElementById("ramen-menu");
+    ramenMenu.appendChild(newRamenImg);
+
+    // click event new ramen
+    newRamenImg.addEventListener("click", handleClick);
+
+    // clear form after submission
+   form.reset();
+});
+}
+
+// Initialize App
+
+function displayRamens(){
+    const ramenMenu = document.getElementById("ramen-menu");
+
+    // looping through existing ramen images and attaching  click event
+    const ramenImages =ramenMenu.querySelectorAll("img");
+    ramenImages.forEach(img => {
+        img.addEventListener("click", handleClick);
+    });
+
+    // automatically display first ramen
+    if (ramenImages.length > 0){
+        ramenImages[0].click();
+    }
+}
+ // main fuction (for initializing everything)
+ function main() {
+    displayRamenMenu()
     displayRamenDetails(ramens[0]);
+    addSubmitListener();
+ }
+
+ // run main
+ document.addEventListener ("DOMContentLoaded", main)
+
