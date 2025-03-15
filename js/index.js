@@ -44,5 +44,27 @@ const ramens = [
         e.target.removeEventListener();
     });
 
+    function handleClick(event){
+        // to get the clicked image
+        const clickedRamen = event.target;
+
+        //getting ramen details from dataset
+        const name = clickedRamen.getAttribute("data-name");
+        const restaurant = clickedRamen.getAttribute ("data-restaurant");
+        const rating = clickedRamen.getAttribute("data-rating")
+        const comment = clickedRamen.getAttribute("data-comment")
+        const imageSrc = clickedRamen.src;
+
+        //updating #ramen-details with clicked ramen details
+        const ramenDetails = document.getElementById("ramen-detail");
+        ramenDetails.querySelector("img").src =imageSrc;
+        ramenDetails.querySelector("h2").textContent = name;
+        ramenDetails.querySelector("h3").textContent = restaurant;
+        ramenDetails.querySelector("#rating-display").textContent = `Rating: ${rating}`;
+        ramenDetails.querySelector("#rating-display").textContent = `Comment: ${comment}`;
+
+}
+
+
     displayRamenMenu();
     displayRamenDetails(ramens[0]);

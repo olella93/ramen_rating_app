@@ -22,14 +22,14 @@ body {
     border-color: #ff6347;
 }
 
-#ramen-details img {
+#ramen-detail img {
     width: 300px;
     height: 200px;
     object-fit: cover;
     border-radius: 10px 0;
 }
 
-form input, form textarea, form button {
+form input, form textarea{
     margin: 5px 0;
     padding: 8px;
     width: 80%;
@@ -45,5 +45,24 @@ form{
    border: 1px solid #ccc;
    border-radius: 8px;
    background: #f9f9f9;
+}
+
+form label {
+    width: 100px;
+    font-weight: bold;
+}
+
+form button{
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover{
+    background: #0056b3;
 }
 
